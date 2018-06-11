@@ -36,7 +36,6 @@ public class MedicalRecord {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.PERSIST,
                     CascadeType.MERGE
             })
     @JoinTable(name = "medicalRecord_cures",

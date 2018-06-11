@@ -25,12 +25,4 @@ public class Ingredient {
     private Integer id;
 
     private String name;
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "ingredients")
-    private Set<Cure> cures = new HashSet<>();
 }

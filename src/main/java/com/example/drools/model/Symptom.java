@@ -27,20 +27,16 @@ public class Symptom {
 
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "symptoms")
-    private Set<Disease> diseases = new HashSet<>();
+    public Symptom(String name)
+    {
+        this.name = name;
+    }
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "symptoms")
-    private Set<Review> reviews = new HashSet<>();
-
+    @Override
+    public String toString() {
+        return "Symptom{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

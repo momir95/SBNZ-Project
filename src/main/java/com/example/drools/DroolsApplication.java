@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-public class DroolsApplication implements CommandLineRunner {
+public class DroolsApplication /*implements CommandLineRunner*/ {
 
 	@Autowired
 	private ReviewRepository reviewRepository;
@@ -34,44 +34,54 @@ public class DroolsApplication implements CommandLineRunner {
 		return KieServices.Factory.get().getKieClasspathContainer();
 	}
 
-	@Override
-	public void run(String... strings) throws Exception {
-
+//	@Override
+//	public void run(String... strings) throws Exception {
+//
 //		reviewRepository.deleteAllInBatch();
 //		symptomRepository.deleteAllInBatch();
 //
-//		Symptom symptom1 = new Symptom(null, "Bol u grlu", null, null);
-//		Symptom symptom2 = new Symptom(null, "Visoka temperatura", null, null);
+//		Symptom symptom1 = new Symptom("Bol u grlu");
+//		Symptom symptom2 = new Symptom("Visoka temperatura");
 //
-//		Set<Symptom> symptoms1 = new HashSet<>();
-//		symptoms1.add(symptom1);
-//		symptoms1.add(symptom2);
+//		Review review1 = new Review();
+//		Review review2 = new Review();
 //
-//		Review review1 = new Review(null, null, null, null, symptoms1);
 //
+//		//symptom1.getReviews().add(review1);
+//		//symptom1.getReviews().add(review2);
+//		//symptom2.getReviews().add(review1);
+//		Symptom s1 = symptomRepository.save(symptom1);
+//		Symptom s2 = symptomRepository.save(symptom2);
+//
+//		review1.getSymptoms().add(s1);
+//		review1.getSymptoms().add(s2);
+//
+//		review2.getSymptoms().add(s1);
 //
 //		Review r = reviewRepository.save(review1);
+//		Review r1 = reviewRepository.save(review2);
 //
-//		Symptom s = symptomRepository.find(1);
+//		Review review3 = new Review();
+//		review3.getSymptoms().add(s2);
 //
-//		System.out.println("------------SIMPROM1------------------");
+//		//symptom2.getReviews().add(review3);
+//
+//		Review r2 = reviewRepository.save(review3);
+//
+//
+//
+//		System.out.println("------------REVIEW1------------------");
 //		for(Symptom symptom: r.getSymptoms())
 //			System.out.println(symptom);
 //
-//		Set<Symptom> symptoms2 = new HashSet<>();
-//		symptoms2.add(new Symptom(null, "Bol u grlu", null, null));
 //
-//
-//
-//		Review review2 = new Review(null, null, null, null, symptoms2);
-//
-//
-//		Review r1 = reviewRepository.save(review2);
-//
-//		System.out.println("------------SIMPROM1------------------");
+//		System.out.println("------------REVIEW2------------------");
 //		for(Symptom symptom: r1.getSymptoms())
 //			System.out.println(symptom);
-
-
-	}
+//
+//		System.out.println("------------REVIEW3------------------");
+//		for(Symptom symptom: r2.getSymptoms())
+//			System.out.println(symptom);
+//
+//	}
 }

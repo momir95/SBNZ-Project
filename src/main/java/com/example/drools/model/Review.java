@@ -31,7 +31,6 @@ public class Review {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.PERSIST,
                     CascadeType.MERGE
             })
     @JoinTable(name = "review_cures",
@@ -45,9 +44,8 @@ public class Review {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.PERSIST,
                     CascadeType.MERGE
-            })
+    })
     @JoinTable(name = "review_symptoms",
             joinColumns = { @JoinColumn(name = "review_id") },
             inverseJoinColumns = { @JoinColumn(name = "symptom_id") })

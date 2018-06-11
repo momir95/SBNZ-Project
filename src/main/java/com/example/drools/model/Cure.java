@@ -29,29 +29,11 @@ public class Cure {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.PERSIST,
                     CascadeType.MERGE
             })
     @JoinTable(name = "cure_ingredients",
             joinColumns = { @JoinColumn(name = "cure_id") },
             inverseJoinColumns = { @JoinColumn(name = "ingredient_id") })
     private Set<Ingredient> ingredients = new HashSet<>();
-
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "cures")
-    private Set<MedicalRecord> medicalRecords = new HashSet<>();
-
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "cures")
-    private Set<Review> reviews = new HashSet<>();
 
 }
