@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,12 +19,14 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class MedicalRecord {
+public class MedicalRecord implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id" , unique = true, nullable = false)
     private Integer id;
+
+    private String lbo; //licni broj osiguranika
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,

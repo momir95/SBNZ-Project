@@ -1,0 +1,12 @@
+
+<div class="medical_record">
+  <form>
+      <div class="form-group">
+        <label for="numberOfMR">Enter LBO</label>
+        <input type="text" class="form-control" id="numberOfMR"  name="numberOfMR" [(ngModel)]="numberOfMR" >
+      </div>
+
+      <button type="submit" (click)="findMR()" id="loginButton"  class="btn btn-primary">Find</button>
+      <br> <div id = "message"> </div>
+  </form>
+</div>

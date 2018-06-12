@@ -1,29 +1,52 @@
 package com.example.drools.payload;
 
+import com.example.drools.model.RoleName;
+
 /**
  * Created by Momir on 11.06.2018.
  */
 public class JwtAuthenticationResponse {
-    private String accessToken;
-    private String tokenType = "Bearer";
+    private String token;
+    private Integer id;
+    private String username;
+    private RoleName role;
 
-    public JwtAuthenticationResponse(String accessToken) {
-        this.accessToken = accessToken;
+    public JwtAuthenticationResponse(String accessToken, Integer id, String username, RoleName role) {
+        this.token = accessToken;
+        this.id = id;
+        this.username = username;
+        this.role = role;
     }
 
-    public String getAccessToken() {
-        return accessToken;
+    public String getToken() {
+        return token;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public String getTokenType() {
-        return tokenType;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
+    public String getUsername() {
+        return username;
+    }
+
+    public RoleName getRole() {
+        return role;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setRole(RoleName role) {
+        this.role = role;
     }
 }
