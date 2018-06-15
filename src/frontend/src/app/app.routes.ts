@@ -5,6 +5,7 @@ import { HomeComponent} from './components/home/home.component';
 import { AddUserComponent } from './components/addUser/addUser.component';
 import {FindMedicalRecordComponent} from "./components/doctor/findMedicalRecord/findMedicalRecord.component";
 import {ShowMedicalRecordComponent} from "./components/doctor/showMedicalRecord/showMedicalRecord.component";
+import {CreateMedicalRecordComponent} from "./components/doctor/createMedicalRecord/createMedicalRecord.component";
 
 const appRoutes : Routes =
   [
@@ -19,6 +20,10 @@ const appRoutes : Routes =
     {
       path : 'showMedicalRecord/:p1',
       component : ShowMedicalRecordComponent
+    },
+    {
+      path : 'createMedicalRecord',
+      component : CreateMedicalRecordComponent
     },
     {
       path : 'addUser',

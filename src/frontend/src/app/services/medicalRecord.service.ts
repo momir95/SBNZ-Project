@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import {Consts} from "../utils/const.utils";
+import {MedicalRecord} from "../models";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'content-type': 'application/json' })
@@ -27,6 +28,14 @@ export class MedicalRecordService
   getMedicalRecordByID(id: number)
   {
     return this.http.get(Consts.getHostname() + "/api/medicalRecord/getById/" + id, httpOptions);
+  }
+
+  save(medicalRecord: MedicalRecord)
+  {
+    let param = JSON.stringify(medicalRecord);
+    console.log(param);
+
+    return this.http.post(Consts.getHostname() + "/api/medicalRecord/save", param, httpOptions);
   }
 
 }

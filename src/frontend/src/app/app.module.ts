@@ -19,6 +19,8 @@ import { AuthenticationService } from "./services/authentication.service";
 import { routing } from "./app.routes";
 import {FindMedicalRecordComponent} from "./components/doctor/findMedicalRecord/findMedicalRecord.component";
 import {ShowMedicalRecordComponent} from "./components/doctor/showMedicalRecord/showMedicalRecord.component";
+import {CreateMedicalRecordComponent} from "./components/doctor/createMedicalRecord/createMedicalRecord.component";
+import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 
 
 
@@ -32,7 +34,8 @@ import {ShowMedicalRecordComponent} from "./components/doctor/showMedicalRecord/
     FormsModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMultiSelectDropDownModule.forRoot()
 
   ],
   declarations: [
@@ -41,7 +44,8 @@ import {ShowMedicalRecordComponent} from "./components/doctor/showMedicalRecord/
     HomeComponent,
     AddUserComponent,
     FindMedicalRecordComponent,
-    ShowMedicalRecordComponent
+    ShowMedicalRecordComponent,
+    CreateMedicalRecordComponent
 
   ],
   providers: [

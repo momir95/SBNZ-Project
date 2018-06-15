@@ -36,4 +36,12 @@ public class MedicalRecordServiceImpl implements MedicalRecordService{
         else
             return null;
     }
+
+    @Override
+    public MedicalRecord save(MedicalRecord medicalRecord) {
+
+        MedicalRecord medicalRecord1 = this.medicalRecordRepository.save(medicalRecord);
+
+        return medicalRecord1;
+    }
 }

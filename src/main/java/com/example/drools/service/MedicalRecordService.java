@@ -10,4 +10,6 @@ public interface MedicalRecordService {
     MedicalRecord getMedicalRecordByLbo(String lbo);
 
     MedicalRecord getMedicalRecordById(Integer id);
+
+    MedicalRecord save(MedicalRecord medicalRecord);
 }

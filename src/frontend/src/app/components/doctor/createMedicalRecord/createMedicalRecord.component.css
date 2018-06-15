@@ -1,0 +1,10 @@
+.medical_record {
+  position: absolute;
+  height: 200px;
+  width: 300px;
+  z-index: 15;
+  top: 30%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+}
+

@@ -45,4 +45,16 @@ public class MedicalRecordController {
         }
         return new ResponseEntity<>(medicalRecord, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<MedicalRecord> save(@RequestBody MedicalRecord medicalRecord) throws ParseException {
+
+        MedicalRecord medicalRecord1 = this.medicalRecordService.save(medicalRecord);
+
+        if(medicalRecord1 == null)
+        {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(medicalRecord1, HttpStatus.CREATED);
+    }
 }
