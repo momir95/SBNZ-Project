@@ -1,0 +1,16 @@
+
+<div class="medical_record">
+  <form>
+    <div class="card">
+      <div class="card-header">Added ingredients</div>
+      <ul class="list-group clearfix">
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let ingredient of ingredients; let i = index"><strong>{{ingredient.name}}</strong><button class="btn btn-danger" (click)="delete(ingredient.name)">-</button></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><input type="text" class="form-control" name="name" placeholder="Enter ingredient name" [(ngModel)]="name"><button class="btn btn-danger" (click)="addIngredient()">+</button></li>
+      </ul>
+    </div>
+
+    <br>
+
+    <button type="submit" (click)="create()" class="btn btn-primary btn-block">Create ingredient</button>
+  </form>
+</div>

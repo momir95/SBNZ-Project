@@ -4,10 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import {Consts} from "../utils/const.utils";
-import {MedicalRecord} from "../models";
+import {MedicalRecord, Cure} from "../models";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'content-type': 'application/json' })
+  headers: new HttpHeaders({ 'content-type': 'application/json', 'Access-Control-Allow-Origin': '*' })
 };
 
 @Injectable()
@@ -36,6 +36,14 @@ export class MedicalRecordService
     console.log(param);
 
     return this.http.post(Consts.getHostname() + "/api/medicalRecord/save", param, httpOptions);
+  }
+
+  updateCures(id:number, cures: Cure[])
+  {
+    let param = JSON.stringify(cures);
+    console.log(param);
+
+    return this.http.put(Consts.getHostname() + "/api/medicalRecord/updateCures/" + id, param, httpOptions);
   }
 
 }

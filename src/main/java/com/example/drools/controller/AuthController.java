@@ -79,7 +79,7 @@ public class AuthController {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getUsername(), signUpRequest.getPassword());
+        User user = new User(signUpRequest.getUsername(), signUpRequest.getPassword(), signUpRequest.getFirstname(), signUpRequest.getLastname());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 

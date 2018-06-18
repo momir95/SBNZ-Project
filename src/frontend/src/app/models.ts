@@ -20,6 +20,7 @@ export class Link
 export class Review
 {
   constructor( public id:number,
+               public date: Date,
                public cures: Cure[],
                public disease: Disease,
                public symptoms: Symptom[]
@@ -61,6 +62,15 @@ export class Ingredient
   constructor( public id:number,
                public name: string
   ) {}
+}
+
+export class SignUpRequest
+{
+  constructor( public firstname: string,
+               public lastname: string,
+               public username: string,
+               public password: string
+  ){}
 }
 
 

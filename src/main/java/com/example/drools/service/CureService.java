@@ -1,6 +1,7 @@
 package com.example.drools.service;
 
 import com.example.drools.model.Cure;
+import com.example.drools.model.MedicalRecord;
 
 import java.util.List;
 
@@ -10,4 +11,6 @@ import java.util.List;
 public interface CureService {
 
     List<Cure> getAllCures();
+    Cure save(Cure cure);
+
 }

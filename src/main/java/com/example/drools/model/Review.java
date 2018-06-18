@@ -1,11 +1,13 @@
 package com.example.drools.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,9 +26,12 @@ public class Review {
     @Column(name = "id" , unique = true, nullable = false)
     private Integer id;
 
+    private Date date;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medicalRecord_id", nullable = true) //ovo treba na false
+    @JsonIgnore
     private MedicalRecord medicalRecord;
 
     @ManyToMany(fetch = FetchType.LAZY,

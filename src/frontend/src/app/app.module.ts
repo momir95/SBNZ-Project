@@ -21,6 +21,9 @@ import {FindMedicalRecordComponent} from "./components/doctor/findMedicalRecord/
 import {ShowMedicalRecordComponent} from "./components/doctor/showMedicalRecord/showMedicalRecord.component";
 import {CreateMedicalRecordComponent} from "./components/doctor/createMedicalRecord/createMedicalRecord.component";
 import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import {AddCureComponent} from "./components/admin/addCure/addCure.component";
+import {AddIngredientComponent} from "./components/admin/addIngredient/addIngredient.component";
+import {AddDiseaseComponent} from "./components/admin/addDisease/addDisease.component";
 
 
 
@@ -45,7 +48,10 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
     AddUserComponent,
     FindMedicalRecordComponent,
     ShowMedicalRecordComponent,
-    CreateMedicalRecordComponent
+    CreateMedicalRecordComponent,
+    AddCureComponent,
+    AddIngredientComponent,
+    AddDiseaseComponent
 
   ],
   providers: [

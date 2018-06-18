@@ -29,4 +29,14 @@ public class CureServiceImpl implements CureService {
         else
             return null;
     }
+
+    @Override
+    public Cure save(Cure cure) {
+
+        Cure cure1 = this.cureRepository.save(cure);
+
+        if(cure != null)
+            return cure;
+        return null;
+    }
 }

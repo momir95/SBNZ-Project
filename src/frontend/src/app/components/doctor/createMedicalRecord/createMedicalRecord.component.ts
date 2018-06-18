@@ -100,7 +100,7 @@ export class CreateMedicalRecordComponent implements OnInit
           (data: MedicalRecord)  => this.medicalRecord = data,
           error => alert(error),
           () => {
-            //this._router.navigate(['/showMedicalRecord/' + this.medicalRecord.id]);
+            this._router.navigate(['/showMedicalRecord/' + this.medicalRecord.id]);
           }
         );
       }

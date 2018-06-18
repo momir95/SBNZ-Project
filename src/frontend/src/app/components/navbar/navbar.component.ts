@@ -31,6 +31,7 @@ export class NavbarComponent implements OnInit
     console.log('Promenio roluu');
     if (this.currentRole == "ROLE_ADMIN") {
       this.presetAdmin();
+      this._router.navigate(['/findMedicalRecord']);
     }
     else if (this.currentRole == "ROLE_DOCTOR") {
       this.presetDoctor();
@@ -47,10 +48,12 @@ export class NavbarComponent implements OnInit
 
   presetAdmin()
   {
-    this.addLink({text: "Add user", routerLink: "/addUser"});
-    this.addLink({text: "Add alarm rule", routerLink: "/addAlarmComponent"});
-    this.addLink({text: "All logs", routerLink: "/allLogs"});
-    this.addLink({text: "All alarms", routerLink: "/allAlarms"});
+    this.addLink({text: "Find MR", routerLink: "/findMedicalRecord"});
+    this.addLink({text: "Create MR", routerLink: "/createMedicalRecord"});
+    this.addLink({text: "Create cure", routerLink: "/createCure"});
+    this.addLink({text: "Create ingredient", routerLink: "/createIngredient"});
+    this.addLink({text: "Create disease", routerLink: "/createDisease"});
+    this.addLink({text: "Add doctor", routerLink: "/addDoctor"});
     this.addLink({text: "Logout", routerLink:"/" });
     //this._router.navigate(['/adminPage']);
   }

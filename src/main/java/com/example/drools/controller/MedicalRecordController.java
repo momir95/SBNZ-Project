@@ -1,5 +1,6 @@
 package com.example.drools.controller;
 
+import com.example.drools.model.Cure;
 import com.example.drools.model.MedicalRecord;
 import com.example.drools.service.MedicalRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * Created by Momir on 12.06.2018.
@@ -38,6 +40,7 @@ public class MedicalRecordController {
     public ResponseEntity<MedicalRecord> getById(@PathVariable("id") Integer id) throws ParseException {
 
         MedicalRecord medicalRecord = this.medicalRecordService.getMedicalRecordById(id);
+        System.out.println("Broj lekova: " + medicalRecord.getCures().size());
 
         if(medicalRecord == null)
         {
@@ -56,5 +59,19 @@ public class MedicalRecordController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         return new ResponseEntity<>(medicalRecord1, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/updateCures/{id}", method = RequestMethod.PUT , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+     ResponseEntity<MedicalRecord> updateCures(@PathVariable("id") Integer id, @RequestBody List<Cure> cures) throws ParseException {
+
+        System.out.println("Update cures");
+        MedicalRecord medicalRecord1 = this.medicalRecordService.updateCures(id, cures);
+
+        if(medicalRecord1 == null)
+        {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(medicalRecord1, HttpStatus.OK);
     }
 }

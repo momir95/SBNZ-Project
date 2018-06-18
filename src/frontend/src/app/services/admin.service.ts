@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {SignUpRequest} from "../models";
+import {Consts} from "../utils/const.utils";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'content-type': 'application/json' })
@@ -14,13 +16,13 @@ export class AdminService
   {
   }
 
-  // registerUser(username: string, pass: string, role: string, firstname: string, lastname: string, institutionName: string, address: Address, firmName: string, firmDescription: string)
-  // {
-  //   let registerRequest = {username: username, password: pass, role: role, firstname: firstname, lastname: lastname, institutionName: institutionName, address: address, firmName: firmName, firmDescription: firmDescription};
-  //   let param = JSON.stringify(registerRequest);
-  //   return this.http.post("https://localhost:8443/api/registerUser", param, httpOptions);
-  //
-  // }
+  save(signUp: SignUpRequest)
+  {
+    let param = JSON.stringify(signUp);
+    console.log(param);
+
+    return this.http.post(Consts.getHostname() + "/api/auth/signup", param, httpOptions);
+  }
 
 }
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AdminService } from "../../services/admin.service";
+import {SignUpRequest} from "../../models";
 
 @Component({
   moduleId: module.id,
@@ -10,42 +11,23 @@ import { AdminService } from "../../services/admin.service";
 })
 
 export class AddUserComponent  {
-  // private usr: string;
-  // private password: string;
-  // private userType: string;
-  // private firstname: string;
-  // private lastname: string;
-  // private institutionName: string;
-  // private city:string;
-  // private buildingNumber:string;
-  // private buildingStreet:string;
-  // private postalCode:string;
-  // private country:string;
-  // private firmName:string;
-  // private firmDescription:string;
-  //
-  // constructor(private adminService: AdminService)
-  // {
-  //   this.usr = "";
-  //   this.password = "";
-  //   this.userType = "";
-  //   this.firstname = "";
-  //   this.lastname = "";
-  //   this.institutionName = "";
-  //   this.city = "";
-  //   this.buildingNumber = "";
-  //   this.buildingStreet = "";
-  //   this.postalCode = "";
-  //   this.country = "";
-  //   this.firmName = "";
-  //   this.firmDescription = "";
-  // }
-  //
-  // register()
-  // {
-  //   this.adminService.registerUser(this.usr, this.password, this.userType, this.firstname, this.lastname, this.institutionName,
-  //     new Address(null,this.city, this.buildingNumber, this.buildingStreet, this.postalCode, this.country), this.firmName, this.firmDescription).subscribe(
-  //     data => console.log(data),
-  //   );
-  // }
+  private username: string;
+  private password: string;
+  private firstname: string;
+  private lastname: string;
+
+  constructor(private adminService: AdminService)
+  {
+    this.username = "";
+    this.password = "";
+    this.firstname = "";
+    this.lastname = "";
+  }
+
+  register()
+  {
+    this.adminService.save(new SignUpRequest(this.firstname, this.lastname, this.username, this.password)).subscribe(
+      data => console.log(data),
+    );
+  }
 }

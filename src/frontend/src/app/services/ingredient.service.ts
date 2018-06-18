@@ -4,14 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import {Consts} from "../utils/const.utils";
-import {Cure} from "../models";
+import {Ingredient} from "../models";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'content-type': 'application/json' })
 };
 
 @Injectable()
-export class CureService
+export class IngredientService
 {
   constructor(private http: HttpClient)
   {
@@ -19,15 +19,15 @@ export class CureService
 
   getAll()
   {
-    return this.http.get(Consts.getHostname() + "/api/cure/getAll", httpOptions);
+    return this.http.get(Consts.getHostname() + "/api/ingredient/getAll", httpOptions);
   }
 
-  save(cure: Cure)
+  save(ingredients: Ingredient[])
   {
-    let param = JSON.stringify(cure);
+    let param = JSON.stringify(ingredients);
     console.log(param);
 
-    return this.http.post(Consts.getHostname() + "/api/cure/save", param, httpOptions);
+    return this.http.post(Consts.getHostname() + "/api/ingredient/save", param, httpOptions);
   }
 
 
