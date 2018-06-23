@@ -74,7 +74,7 @@ export class AddDiseaseComponent implements OnInit
       }
     }
 
-    let disease: Disease = new Disease(null, this.name, this.selectedSymptoms);
+    let disease: Disease = new Disease(null, this.name, "FIRST", this.selectedSymptoms);
 
     this.diseaseService.save(disease).subscribe(
       (data: Disease)  => this.disease = data,

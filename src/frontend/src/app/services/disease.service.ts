@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import {Consts} from "../utils/const.utils";
-import {Ingredient, Symptom, Disease} from "../models";
+import {Ingredient, Symptom, Disease, MedicalRecord} from "../models";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'content-type': 'application/json' })
@@ -29,6 +29,31 @@ export class DiseaseService
 
     return this.http.post(Consts.getHostname() + "/api/disease/save", param, httpOptions);
   }
+
+  determineDisease(mrId: number, symptoms: Symptom[])
+  {
+    let param = JSON.stringify(symptoms);
+    console.log(param);
+
+    return this.http.post(Consts.getHostname() + "/api/disease/determineDisease/" + mrId, param, httpOptions);
+  }
+
+  getDiseases(symptoms: Symptom[])
+  {
+    let param = JSON.stringify(symptoms);
+    console.log(param);
+
+    return this.http.post(Consts.getHostname() + "/api/disease/getDiseases", param, httpOptions);
+  }
+
+  getSymptoms(disease: Disease)
+  {
+    let param = JSON.stringify(disease);
+    console.log(param);
+
+    return this.http.post(Consts.getHostname() + "/api/disease/getSymptoms", param, httpOptions);
+  }
+
 
 
 }

@@ -1,12 +1,14 @@
 package com.example.drools.controller;
 
-import com.example.drools.model.Role;
-import com.example.drools.model.RoleName;
-import com.example.drools.model.User;
+import com.example.drools.model.*;
 import com.example.drools.payload.*;
+import com.example.drools.repository.DiseaseRepository;
 import com.example.drools.repository.RoleRepository;
+import com.example.drools.repository.SymptomRepository;
 import com.example.drools.repository.UserRepository;
 import com.example.drools.security.JwtTokenProvider;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Momir on 11.06.2018.
@@ -43,8 +48,21 @@ public class AuthController {
     PasswordEncoder passwordEncoder;
 
     @Autowired
+    DiseaseRepository diseaseRepository;
+
+    @Autowired
+    private SymptomRepository symptomRepository;
+
+    @Autowired
     JwtTokenProvider tokenProvider;
     private User user;
+
+    private final KieContainer kieContainer;
+
+    @Autowired
+    public AuthController(KieContainer kieContainer) {
+        this.kieContainer = kieContainer;
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -62,6 +80,21 @@ public class AuthController {
 
             User user = userRepository.findByUsername(loginRequest.getUsername()).orElseThrow(() ->
                     new UsernameNotFoundException("User not found with username : " + loginRequest.getUsername()));
+
+            KieSession kieSession = kieContainer.newKieSession();
+
+            List<Disease> diseases = this.diseaseRepository.findAll();
+            List<Symptom> symptoms = this.symptomRepository.findAll();
+
+
+            for (Disease disease : diseases)
+                kieSession.insert(disease);
+
+            for (Symptom symptom : symptoms)
+                kieSession.insert(symptom);
+
+            //kieSession.dispose();
+
 
 
             return ResponseEntity.ok(new JwtAuthenticationResponse(jwt, user.getId(), user.getUsername(), user.getRoles().iterator().next().getName()));

@@ -27,13 +27,35 @@ public class Cure {
 
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.MERGE
-            })
+    @Enumerated(EnumType.STRING)
+    private CureType cureType;
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "cure_ingredients",
             joinColumns = { @JoinColumn(name = "cure_id") },
             inverseJoinColumns = { @JoinColumn(name = "ingredient_id") })
     private Set<Ingredient> ingredients = new HashSet<>();
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cure)) return false;
+
+        Cure cure = (Cure) o;
+
+        if (!getId().equals(cure.getId())) return false;
+        if (!getName().equals(cure.getName())) return false;
+        if (getCureType() != cure.getCureType()) return false;
+        return getIngredients().equals(cure.getIngredients());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getName().hashCode();
+        result = 31 * result + getCureType().hashCode();
+        result = 31 * result + getIngredients().hashCode();
+        return result;
+    }
 }

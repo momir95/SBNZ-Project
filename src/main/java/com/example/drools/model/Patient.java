@@ -27,7 +27,27 @@ public class Patient implements Serializable {
 
     private String lastname;
 
-//
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Patient)) return false;
+
+        Patient patient = (Patient) o;
+
+        if (!getId().equals(patient.getId())) return false;
+        if (!getFirstname().equals(patient.getFirstname())) return false;
+        return getLastname().equals(patient.getLastname());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getFirstname().hashCode();
+        result = 31 * result + getLastname().hashCode();
+        return result;
+    }
+
+    //
 //    @OneToOne(fetch = FetchType.LAZY,
 //            cascade =  CascadeType.ALL,
 //            mappedBy = "patient")

@@ -74,6 +74,17 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 			<version>1.2.4.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-java8</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>drools-spring-v2</groupId>
+			<artifactId>drools-spring-v2-kjar</artifactId>
+			<type>jar</type>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -1,0 +1,42 @@
+<div class="report">
+  <form>
+    <fieldset>
+      <legend>Report</legend>
+      <div class="form-group">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" (click)="firstF()" name="optradio"> <strong> Patients with possible chronic illness </strong>
+
+        </label>
+
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" (click)="secondF()" name="optradio"> <strong> Patients with possible addicts </strong>
+        </label>
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" (click)="thirdF()" name="optradio"> <strong> Patients with impaired immunity </strong>
+        </label>
+      </div>
+      <button type="submit" (click)="report()" class="btn btn-primary btn-block">Show report</button>
+
+      <br>
+      <div *ngIf="tableVisible">
+        <table class="table table-striped">
+          <!--Table head-->
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let patient of patients; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{patient.firstname}}</td>
+            <td>{{patient.lastname}}</td>
+          </tr>
+        </table>
+      </div>
+    </fieldset>
+  </form>
+</div>

@@ -1,9 +1,14 @@
 package com.example.drools.service.implementation;
 
 import com.example.drools.model.Cure;
+import com.example.drools.model.Ingredient;
 import com.example.drools.model.MedicalRecord;
+import com.example.drools.payload.AllergicCures;
+import com.example.drools.payload.ValidateCures;
 import com.example.drools.repository.MedicalRecordRepository;
 import com.example.drools.service.MedicalRecordService;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +22,14 @@ public class MedicalRecordServiceImpl implements MedicalRecordService{
 
     @Autowired
     private MedicalRecordRepository medicalRecordRepository;
+
+    private final KieContainer kieContainer;
+
+    @Autowired
+    public MedicalRecordServiceImpl(KieContainer kieContainer) {
+        this.kieContainer = kieContainer;
+    }
+
 
     @Override
     public MedicalRecord getMedicalRecordByLbo(String lbo) {
@@ -59,5 +72,42 @@ public class MedicalRecordServiceImpl implements MedicalRecordService{
         MedicalRecord medicalRecord1 = this.medicalRecordRepository.save(medicalRecord);
 
         return medicalRecord1;
+    }
+
+    @Override
+    public ValidateCures validateCures(Integer id, List<Cure> enteredCures) {
+
+        KieSession kieSession = kieContainer.newKieSession();
+
+
+
+        MedicalRecord medicalRecord = this.medicalRecordRepository.findById(id);
+
+        AllergicCures allergicCures = new AllergicCures();
+
+        allergicCures.setEnteredCures(enteredCures);
+
+        for(Cure cure: enteredCures)
+        {
+            for(Ingredient ingredient: cure.getIngredients())
+            {
+                allergicCures.getEnteredIngredients().add(ingredient);
+            }
+        }
+
+
+        kieSession.setGlobal("allergicCures", allergicCures);
+        kieSession.setGlobal("idMR", medicalRecord.getId());
+        kieSession.insert(medicalRecord);
+
+        kieSession.getAgenda().getAgendaGroup("validation").setFocus();
+        kieSession.fireAllRules();
+
+        allergicCures = (AllergicCures) kieSession.getGlobal("allergicCures");
+
+
+        ValidateCures validateCures = new ValidateCures(allergicCures.getAllergicCures(), allergicCures.getAllergicIngredients());
+
+        return validateCures;
     }
 }

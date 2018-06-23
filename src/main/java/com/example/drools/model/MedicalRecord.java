@@ -19,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class MedicalRecord implements Serializable {
+public class MedicalRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,16 +28,17 @@ public class MedicalRecord implements Serializable {
 
     private String lbo; //licni broj osiguranika
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+    @OneToMany(fetch = FetchType.EAGER,
             mappedBy = "medicalRecord")
     private Set<Review> reviews = new HashSet<>();
+
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER
+            ,
             cascade = {
                     CascadeType.MERGE
             })
@@ -45,4 +46,13 @@ public class MedicalRecord implements Serializable {
             joinColumns = { @JoinColumn(name = "medicalRecord_id") },
             inverseJoinColumns = { @JoinColumn(name = "cure_id") })
     private Set<Cure> cures = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "medicalRecord_ingredients",
+            joinColumns = { @JoinColumn(name = "medicalRecord_id") },
+            inverseJoinColumns = { @JoinColumn(name = "ingredient_id") })
+    private Set<Ingredient> ingredients = new HashSet<>();
 }

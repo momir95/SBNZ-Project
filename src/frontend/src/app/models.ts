@@ -23,7 +23,8 @@ export class Review
                public date: Date,
                public cures: Cure[],
                public disease: Disease,
-               public symptoms: Symptom[]
+               public symptoms: Symptom[],
+               public doctor: User
   ){}
 }
 
@@ -46,6 +47,7 @@ export class Disease
 {
   constructor( public id:number,
                public name: string,
+               public diseaseGroup: string,
                public symptoms: Symptom[]
   ) {}
 }
@@ -53,7 +55,8 @@ export class Disease
 export class Symptom
 {
   constructor( public id:number,
-               public name: string
+               public name: string,
+               public symptomType: string
   ) {}
 }
 
@@ -70,6 +73,24 @@ export class SignUpRequest
                public lastname: string,
                public username: string,
                public password: string
+  ){}
+}
+
+export class ValidateCures
+{
+  constructor( public allergicCures: Cure[],
+               public allergicIngredients: Ingredient[]
+  ){}
+}
+
+export class User
+{
+  constructor( public id: number,
+               public firstname: string,
+               public lastname: string,
+               public username: string,
+               public password: string
+
   ){}
 }
 

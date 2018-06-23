@@ -9,6 +9,7 @@ import {CreateMedicalRecordComponent} from "./components/doctor/createMedicalRec
 import {AddCureComponent} from "./components/admin/addCure/addCure.component";
 import {AddIngredientComponent} from "./components/admin/addIngredient/addIngredient.component";
 import {AddDiseaseComponent} from "./components/admin/addDisease/addDisease.component";
+import {ReportComponent} from "./components/admin/report/report.component";
 
 const appRoutes : Routes =
   [
@@ -43,6 +44,10 @@ const appRoutes : Routes =
     {
       path : 'createDisease',
       component : AddDiseaseComponent
+    },
+    {
+      path : 'report',
+      component : ReportComponent
     },
 
   ];

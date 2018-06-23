@@ -25,6 +25,21 @@ export class PatientService
     return this.http.post(Consts.getHostname() + "/api/patient/save", param, httpOptions);
   }
 
+  getFirst()
+  {
+    return this.http.get(Consts.getHostname() + "/api/patient/getPatientWithHronicalDisease", httpOptions);
+  }
+
+  getSecond()
+  {
+    return this.http.get(Consts.getHostname() + "/api/patient/getPatientWithAnalgeticCures", httpOptions);
+  }
+
+  getThird()
+  {
+    return this.http.get(Consts.getHostname() + "/api/patient/getPatientWithWeakImunitet", httpOptions);
+  }
+
 }
 
 

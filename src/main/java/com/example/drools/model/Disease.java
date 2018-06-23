@@ -26,7 +26,10 @@ public class Disease {
 
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @Enumerated(EnumType.STRING)
+    private DiseaseGroup diseaseGroup;
+
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.MERGE
             })
@@ -34,4 +37,33 @@ public class Disease {
             joinColumns = { @JoinColumn(name = "disease_id") },
             inverseJoinColumns = { @JoinColumn(name = "symptom_id") })
     private Set<Symptom> symptoms = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Disease{" +
+                "symptoms=" + symptoms +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Disease)) return false;
+
+        Disease disease = (Disease) o;
+
+        if (!getId().equals(disease.getId())) return false;
+        if (!getName().equals(disease.getName())) return false;
+        if (getDiseaseGroup() != disease.getDiseaseGroup()) return false;
+        return getSymptoms().equals(disease.getSymptoms());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getName().hashCode();
+        result = 31 * result + getDiseaseGroup().hashCode();
+        result = 31 * result + getSymptoms().hashCode();
+        return result;
+    }
 }

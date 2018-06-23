@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 import {Consts} from "../utils/const.utils";
-import {MedicalRecord, Cure} from "../models";
+import {MedicalRecord, Cure, Review} from "../models";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'content-type': 'application/json', 'Access-Control-Allow-Origin': '*' })
@@ -44,6 +44,22 @@ export class MedicalRecordService
     console.log(param);
 
     return this.http.put(Consts.getHostname() + "/api/medicalRecord/updateCures/" + id, param, httpOptions);
+  }
+
+  validateCures(mrId: number, cures: Cure[])
+  {
+    let param = JSON.stringify(cures);
+    console.log(param);
+
+    return this.http.post(Consts.getHostname() + "/api/medicalRecord/validateCures/" + mrId, param, httpOptions);
+  }
+
+  saveReview(id:number, review: Review)
+  {
+    let param = JSON.stringify(review);
+    console.log(param);
+
+    return this.http.put(Consts.getHostname() + "/api/medicalRecord/addReview/" + id, param, httpOptions);
   }
 
 }

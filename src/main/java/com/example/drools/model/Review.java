@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,15 +26,14 @@ public class Review {
     @Column(name = "id" , unique = true, nullable = false)
     private Integer id;
 
-    private Date date;
+    private LocalDateTime date;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "medicalRecord_id", nullable = true) //ovo treba na false
     @JsonIgnore
     private MedicalRecord medicalRecord;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.MERGE
             })
@@ -43,11 +42,11 @@ public class Review {
             inverseJoinColumns = { @JoinColumn(name = "cure_id") })
     private Set<Cure> cures = new HashSet<>();
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "disease_id", nullable = true) //ovo treba na false
     private Disease disease;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.MERGE
     })
@@ -55,6 +54,10 @@ public class Review {
             joinColumns = { @JoinColumn(name = "review_id") },
             inverseJoinColumns = { @JoinColumn(name = "symptom_id") })
     private Set<Symptom> symptoms = new HashSet<>();
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doctor_id", nullable = false)
+    private User doctor;
 
 
 

@@ -2,6 +2,7 @@ package com.example.drools.service;
 
 import com.example.drools.model.Cure;
 import com.example.drools.model.MedicalRecord;
+import com.example.drools.payload.ValidateCures;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface MedicalRecordService {
     MedicalRecord save(MedicalRecord medicalRecord);
 
     MedicalRecord updateCures(Integer id, List<Cure> cures);
+
+    ValidateCures validateCures(Integer id, List<Cure> enteredCures);
 }
