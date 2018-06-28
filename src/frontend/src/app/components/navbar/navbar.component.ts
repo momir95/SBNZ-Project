@@ -52,6 +52,7 @@ export class NavbarComponent implements OnInit
     this.addLink({text: "Create MR", routerLink: "/createMedicalRecord"});
     this.addLink({text: "Create cure", routerLink: "/createCure"});
     this.addLink({text: "Create ingredient", routerLink: "/createIngredient"});
+    this.addLink({text: "Create symptom", routerLink: "/createSymptom"});
     this.addLink({text: "Create disease", routerLink: "/createDisease"});
     this.addLink({text: "Add doctor", routerLink: "/addDoctor"});
     this.addLink({text: "Report", routerLink: "/report"});
@@ -63,6 +64,7 @@ export class NavbarComponent implements OnInit
   {
     this.addLink({text: "Find MR", routerLink: "/findMedicalRecord"});
     this.addLink({text: "Create MR", routerLink: "/createMedicalRecord"});
+    this.addLink({text: "Create cure", routerLink: "/createCure"});
     this.addLink({text: "Report", routerLink: "/report"});
     this.addLink({text: "Logout", routerLink:"/" });
     //this._router.navigate(['/adminPage']);

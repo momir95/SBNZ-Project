@@ -1,6 +1,8 @@
 package com.example.drools.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +28,7 @@ public class Review {
     @Column(name = "id" , unique = true, nullable = false)
     private Integer id;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)

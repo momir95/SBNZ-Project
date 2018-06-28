@@ -71,7 +71,7 @@ public class PatientServiceImpl implements PatientService {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        kieSession.setGlobal("now", now);
+        kieSession.setGlobal("currentDate", now);
 
 
         Set<Patient> patientSet = new HashSet<>();
@@ -110,7 +110,7 @@ public class PatientServiceImpl implements PatientService {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        kieSession.setGlobal("now", now);
+        kieSession.setGlobal("currentDate", now);
 
 
         List<Patient> patientList = new ArrayList<>();
@@ -145,7 +145,7 @@ public class PatientServiceImpl implements PatientService {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        kieSession.setGlobal("now", now);
+        kieSession.setGlobal("currentDate", now);
 
 
         List<Patient> patientSet = new ArrayList<>();

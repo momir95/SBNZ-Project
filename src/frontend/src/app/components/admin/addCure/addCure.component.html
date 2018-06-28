@@ -15,7 +15,20 @@
       (onSelectAll)="onSelectAll($event)"
       [ngModelOptions]="{standalone: true}"
     >
-    </ng-multiselect-dropdown><br>
+    </ng-multiselect-dropdown>
+
+    <br>
+    <ng-multiselect-dropdown
+      [placeholder]="'Select type'"
+      [data]="items1"
+      [(ngModel)]="selectedItem"
+      [settings]="dropdownSettings1"
+      (onSelect)="onItemSelect($event)"
+      (onDeSelect)="onItemDeselect($event)"
+      [ngModelOptions]="{standalone: true}"
+    >
+    </ng-multiselect-dropdown>
+    <br>
 
     <button type="submit" (click)="create()" class="btn btn-primary btn-block">Create cure</button>
   </form>

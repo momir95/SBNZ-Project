@@ -64,7 +64,7 @@
           <tr *ngFor="let review of medicalRecord.reviews; let i = index">
             <th scope="row">{{i + 1}}</th>
             <td></td>
-            <!--<td>{{review.date | date:'medium'}}</td>-->
+            <!--<td>{{review.date}}</td>-->
             <td>{{review.doctor.firstname}} {{review.doctor.lastname}}</td>
             <td>{{review.disease.name}}</td>
             <td>

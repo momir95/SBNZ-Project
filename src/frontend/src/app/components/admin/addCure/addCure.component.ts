@@ -25,10 +25,17 @@ export class AddCureComponent implements OnInit
   selectedItems = [];
   dropdownSettings = {};
 
+  items1 = [];
+  selectedItem;
+  dropdownSettings1 = {};
+  private type: string;
+
+
 
   constructor(private cureService: CureService, private ingredientService: IngredientService, private _router: Router)
   {
     this.name = "";
+
   }
 
   ngOnInit()
@@ -59,6 +66,23 @@ export class AddCureComponent implements OnInit
         };
       }
     );
+
+    var item1 = {item_id: 1 , item_text: 'ANTIBIOTIK'};
+    var item2 = {item_id: 2 , item_text: 'ANALGETIK'};
+
+    this.items1.push(item1);
+    this.items1.push(item2);
+
+
+
+    this.items1 = JSON.parse(JSON.stringify(this.items1))
+
+    this.dropdownSettings1 = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      allowSearchFilter: true
+    };
   }
 
   create()
@@ -72,7 +96,7 @@ export class AddCureComponent implements OnInit
       }
     }
 
-    let cure: Cure = new Cure(null, this.name, this.selectedIngridients);
+    let cure: Cure = new Cure(null, this.name, this.selectedIngridients, this.type);
 
     this.cureService.save(cure).subscribe(
       (data: Cure)  => this.cure = data,
@@ -99,7 +123,11 @@ export class AddCureComponent implements OnInit
 
 
   onItemSelect(item:any){
-    console.log(item);
+
+    if(item.item_id == 1)
+      this.type = 'ANTIBIOTIK';
+    else
+      this.type = 'ANALGETIK';
   }
   onSelectAll(items: any){
     console.log(items);

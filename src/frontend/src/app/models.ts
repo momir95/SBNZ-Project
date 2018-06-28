@@ -39,7 +39,8 @@ export class Patient
 export class Cure {
   constructor(public id: number,
               public name: string,
-              public ingredients: Ingredient[]
+              public ingredients: Ingredient[],
+              public cureType: string
   ) {}
 }
 

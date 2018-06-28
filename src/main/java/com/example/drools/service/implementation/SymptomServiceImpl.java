@@ -28,4 +28,12 @@ public class SymptomServiceImpl implements SymptomService{
 
         return null;
     }
+
+    @Override
+    public Symptom save(Symptom symptom) {
+
+        Symptom saved = this.symptomRepository.save(symptom);
+
+        return saved;
+    }
 }

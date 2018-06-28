@@ -1,5 +1,6 @@
 package com.example.drools.service;
 
+import com.example.drools.model.Ingredient;
 import com.example.drools.model.Symptom;
 
 import java.util.List;
@@ -10,5 +11,6 @@ import java.util.List;
 public interface SymptomService {
 
     List<Symptom> getAll();
+    Symptom save(Symptom symptom);
 
 }

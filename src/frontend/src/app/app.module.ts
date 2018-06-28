@@ -25,6 +25,7 @@ import {AddCureComponent} from "./components/admin/addCure/addCure.component";
 import {AddIngredientComponent} from "./components/admin/addIngredient/addIngredient.component";
 import {AddDiseaseComponent} from "./components/admin/addDisease/addDisease.component";
 import {ReportComponent} from "./components/admin/report/report.component";
+import {AddSymptomComponent} from "./components/admin/addSymptom/addSymptom.component";
 
 
 
@@ -53,7 +54,8 @@ import {ReportComponent} from "./components/admin/report/report.component";
     AddCureComponent,
     AddIngredientComponent,
     AddDiseaseComponent,
-    ReportComponent
+    ReportComponent,
+    AddSymptomComponent
 
   ],
   providers: [

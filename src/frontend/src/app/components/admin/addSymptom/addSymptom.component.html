@@ -1,0 +1,25 @@
+
+<div class="login">
+  <form>
+    <fieldset>
+      <legend>Add symptom</legend>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter username" name="name" [(ngModel)]="name" >
+      </div>
+      <br>
+      <ng-multiselect-dropdown
+        [placeholder]="'Select type'"
+        [data]="items"
+        [(ngModel)]="selectedItem"
+        [settings]="dropdownSettings"
+        (onSelect)="onItemSelect($event)"
+        (onDeSelect)="onItemDeselect($event)"
+        [ngModelOptions]="{standalone: true}"
+      >
+      </ng-multiselect-dropdown>
+      <br>
+      <button type="submit" (click)="add()" class="btn btn-primary btn-block">Add symptom</button>
+    </fieldset>
+  </form>
+</div>

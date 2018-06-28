@@ -12,6 +12,8 @@ import org.kie.api.runtime.KieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -94,6 +96,12 @@ public class MedicalRecordServiceImpl implements MedicalRecordService{
                 allergicCures.getEnteredIngredients().add(ingredient);
             }
         }
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+
+        kieSession.setGlobal("currentDate", now);
 
 
         kieSession.setGlobal("allergicCures", allergicCures);

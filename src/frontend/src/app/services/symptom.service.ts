@@ -22,12 +22,19 @@ export class SymptomService
     return this.http.get(Consts.getHostname() + "/api/symptom/getAll", httpOptions);
   }
 
-  save(symptoms: Symptom[])
-  {
+  save(symptoms: Symptom[]) {
     let param = JSON.stringify(symptoms);
     console.log(param);
 
     return this.http.post(Consts.getHostname() + "/api/symptom/save", param, httpOptions);
+  }
+
+  saveSymptom(symptom: Symptom)
+    {
+      let param = JSON.stringify(symptom);
+      console.log(param);
+
+      return this.http.post(Consts.getHostname() + "/api/symptom/saveSymptom", param, httpOptions);
   }
 
 
